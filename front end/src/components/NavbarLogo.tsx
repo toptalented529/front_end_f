@@ -19,7 +19,7 @@ export function NavbarLogo({
       <a
         className="no-underline self-center text-gray-50 hover:text-gray-50 hover:no-underline"
         href="/"
-        target="_blank"
+        target=""
         rel="noreferrer"
       >
         <span className="pr-4 text-2xl capitalize hover:animate-pulse font-sans font-bold ">

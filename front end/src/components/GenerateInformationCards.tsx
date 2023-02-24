@@ -38,7 +38,7 @@ export function GenerateInformationCards({
   ];
 
   return (
-    <div className="gap-16 mx-4 space-y-2 md:space-y-0 md:grid md:grid-cols-3 w-4/5 ">
+    <div className="gap-16 mx-4 space-y-2 md:space-y-0 md:grid md:grid-cols-3  ">
       {informationCardsData.map((card) => (
         <div className="w-full hover:shadow-2xl" key={uuid()}>
           <InformationImage card={card} />

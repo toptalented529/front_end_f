@@ -52,18 +52,18 @@ export const  Item:React.FC = () => {
         }
         fetchData()
     },[id])
-  return (<div className="h-screen">
+  return (<div className="">
   {
     loading? <div className="bg-gray-800 h-scren"></div>:
   
-    <div className="bg-gray-600   m-0 mx-0 2xl:container flex flex-col items-center w-full h-screen">
+    <div className="bg-gray-600   m-0 mx-0  flex flex-col items-center w-screen h-screen">
     <button className="bg-slate-800 absolute top-8 left-3 text-white font-bold rounded-md px-4 py -2"
         onClick={() => {setuploadView(!uploadView)}}> upload content</button>
         {
         
         uploadView && <UploadContainer imageNumber ={items[Number(id)].imageId} itemNumber={Number(id)} onMessageChanges={handleMessage}  />      
         }
-    <button className="bg-slate-800 absolute top-8  text-white font-bold rounded-md px-4 py -2"
+    <button className="bg-slate-800 absolute top-8 left-[45%] text-white font-bold rounded-md px-4 py -2"
        ><a href="/"> Back to DashBoard</a></button>
     <button className="bg-slate-800 absolute top-8 right-32  text-white font-bold rounded-md px-4 py -2"
         onClick={() => {
@@ -75,9 +75,9 @@ export const  Item:React.FC = () => {
         }
 
         <iframe 
+          className="h-[100vh] w-[100vw]"
             src = {iframe_url}
-            width={"100%"}
-            height={"100%"} 
+          
             tabIndex={-1}
             title ={"title"}
             >

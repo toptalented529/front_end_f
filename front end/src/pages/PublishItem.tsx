@@ -45,7 +45,7 @@ export const  PublishItem:React.FC = () => {
   {
     loading? <div className="bg-gray-800 h-scren"></div>:
   
-    <div className="bg-gray-600   m-0 mx-0 2xl:container flex flex-col items-center w-full h-screen">
+    <div className="bg-gray-600   m-0 mx-0  flex flex-col items-center w-full h-screen">
    
         <iframe 
             src = {iframe_url}

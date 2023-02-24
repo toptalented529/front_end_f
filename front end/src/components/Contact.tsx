@@ -4,32 +4,47 @@
  */
 
 import axios from 'axios'
-export function Contact(props: {
+import { useState } from 'react';
+
+interface props {
+  h2:string,
+  p:string,
+  button:string,
+}
+
+
+
+
+export const Contact: React.FC<props> = (props: {
   h2: string;
   p: string;
   button: string;
-}): JSX.Element {
+}) => {
   console.log(props.p)
+
+  const [emailAddress,setEmailAddress] = useState<string>("")
 
   const handleEmailSend =async () => {
     console.log("here")
     const response = await axios.post("http://127.0.0.1:8000/v1/upload/send-email", {
       to:"work.katashi@gmail.com",
-      subject:'hi',
-      body:"here"
+      subject:'Subscribe from fada',
+      body:`subscribe arrived from ${emailAddress}`
     })
     console.log("result",response)
     
   }
   return (
-    <div className="flex flex-col top-0 left-0 w-full  min-h-screen mb--64 p-12 bg-cover text-sm text-center   sm:text-base justify-center text-gray-50 bg-[../assets/images/contact.png]"
+    <div className="flex flex-col top-0 left-0 w-full  min-h-screen mb--64 p-12 bg-cover text-sm text-center   sm:text-base justify-center text-gray-50"
     style={{ backgroundImage: `url(${require('../assets/images/contact.png')})` }}
     >
         <h2 className="mb-4 mt-[-15%] font-bold text-3xl capitalize">Join the party!</h2>
         {/* <p>{props.p}</p> */}
         <div className="items-center flex flex-col">
           <div className="relative self-center">
-            <input 
+            <input onChange={(e) => {
+              setEmailAddress(e.target.value)
+            }}
               className="w-[30vw] min-w-[150px] rounded-full bg-black text-white border-b-2 border-blue-500 outline-none font-sans text-lg sm:text-sm lg:text-2xl  h-[4vw] min-h-[50px] placeholder-gray-300 text-center"
               placeholder="Your Email here"
             ></input>

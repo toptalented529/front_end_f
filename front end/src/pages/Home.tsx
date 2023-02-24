@@ -5,16 +5,14 @@ import { NavBar } from "../components/NavBar";
 // import { links } from "../data";
 import { Information } from "../components/Information";
 // import { Quote } from "../components/Quote";
-import { heading, paragraphText,experienceUrls, text } from "../data";
+import { heading, paragraphText, experienceUrls, text } from "../data";
 // import { Item } from "./pages/ItemDetail";
 /* main app */
 export default function Home(): JSX.Element {
   return (
-    <div className="m-0 mx-auto w-full  bg-black ">
-           <NavBar
-            logo={text[3]}
-      />
-     <Hero bText={text[0]} hText={heading[0]} pText={paragraphText[3]} />
+    <div className=" bg-black ">
+      <NavBar logo={text[3]} />
+      <Hero />
       <Information
         experienceUrls={experienceUrls}
         infoHeading={heading[1]}

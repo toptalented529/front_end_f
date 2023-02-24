@@ -14,7 +14,7 @@ export function Information(props: {
         {props.infoHeading}
       </h1>
       <MainExperience url ={props.experienceUrls} />
-      <p className="text-white font-sans text-2xl  w-4/5">More experiences</p>
+      <p className="text-white font-sans text-2xl">More experiences</p>
       <GenerateInformationCards props={props} />
     </div>
   );
