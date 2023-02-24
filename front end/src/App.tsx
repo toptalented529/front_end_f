@@ -10,15 +10,20 @@ export default function App(): JSX.Element {
   let subdomain = ''
   if(hostname.split('.')[0] === "fada" ){
     subdomain = ""
+  }else{
+    subdomain = hostname.split('.')[0]
   }
-   subdomain = hostname.split('.')[0]
+  console.log(subdomain)
+
 
 
   return (
     <Router>
     <div >
         <Routes>
-        <Route  path = "/" element={<Home />} ></Route>
+       {
+        subdomain && <Route  path = "/" element={<Home />} ></Route>
+       }
         
         <Route  path = "/item/:id" element={<Item />} ></Route>
         {

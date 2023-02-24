@@ -4,7 +4,7 @@ import { IBaseController } from '../../common/interfaces/base-controller-interfa
 import { convertToObjectOrEmptyObject } from '../../common/utils/common';
 import { uploadSchema } from './upload_schema';
 // import { IUploadRes } from './upload-interfaces';
-import { s3Instance } from '../../configs/awsS3';
+import { s3Instance,sesInstance } from '../../configs/awsS3';
 import axios from 'axios'
 import { r, rtp, RT } from "@gmetrixr/rjson";
 import { fn } from '@gmetrixr/rjson/lib/cjs/r';
@@ -56,7 +56,6 @@ export class UploadController implements IBaseController {
       const hostname_path = req.query.hostname
       
       const projectUrl = await this._projectService.getByURL(hostname_path)
-      console.log("8888888888888888888",projectUrl)
       if(projectUrl === undefined || projectUrl === null){
         res.code(404).send({res:"doesn't exist!"})
       }else{
@@ -64,6 +63,10 @@ export class UploadController implements IBaseController {
         res.code(200).send({project:projectUrl})
       }
 
+    })
+
+    app.post("/send-email",{
+      handler: this._sendEmail,
     })
 
 
@@ -75,15 +78,47 @@ export class UploadController implements IBaseController {
   }
 
 
+   ////////////////////////send Email API handler///////////////////////////////////
+  private _sendEmail= async (req:any,res:any) => {
+    const {to,subject,body} = req.body
+    const params = {
+      Destination: {
+        ToAddresses: [to]
+      },
+      Message: {
+        Body: {
+          Text: {
+            Data: body
+          }
+        },
+        Subject: {
+          Data: subject
+        }
+      },
+      Source: 'top.talented529@gmail.com' // replace with your sender email address
+    };
+  
+    try {
+      console.log("12121212121212",sesInstance)
+      const result = await sesInstance.sendEmail(params).promise();
+      res.send(result);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send({ message: 'Failed to send email' });
+    }  }
+
+
   private _getProjects = async (req:any, res:any) => {
     const result = await this._projectService.getAll()
     res.code(200).send({result:result})
   }
 
+
+  /////////////////////to store project in db///////////////////////////////
+
   
   private _setProject = async (req:any, res:any) => {
       const { id, image_id ,urls, uuid} = req.body;
-      console.log("222222222222222222",image_id)
       const result = await this._projectService.createOne(
         convertToObjectOrEmptyObject<IProjectsDto>({
           id:id ,
@@ -103,12 +138,9 @@ export class UploadController implements IBaseController {
 
     try {
     // const image = req.body.file;
-    const item_data = this._projectService.getAll()
-    console.log(item_data)
 
     //////////////////////////////////////////////////////
     const image = req.raw.files.file;
-    console.log("Latest",req)
     const itemnumber  = req.raw.headers.item
     const key_id = req.raw.headers.key_id
     const s3Params = {
@@ -116,11 +148,11 @@ export class UploadController implements IBaseController {
       Key: `images/${image.name}`,
       Body: image.data
     };
+    
 
+    try {    
 
-    try {
       const s3Response = await s3Instance.upload(s3Params).promise();
-      console.log("herer",s3Response)
       try {
         const response = await axios.post("https://api.gmetri.com/sdk/file/uploadFileFromURL",
           {

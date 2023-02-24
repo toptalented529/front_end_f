@@ -9,7 +9,7 @@ import axios from "axios";
 
    const handlePublish = async () => {
       const response = await  axios.post("http://127.0.0.1:8000/v1/upload/setPublish",{
-        projectName: hostname+ pathname,
+        projectName: "user.fada.xyz/the_cozy_den_3",
         publishURL: window.localStorage.getItem("projectURL")
       })
       console.log("00000000000000000000000000",hostname+ pathname,response)
@@ -40,7 +40,7 @@ import axios from "axios";
         </button>
         <div className="flex flex-row">
         <input className="w-10/12 rounded-xl bg-white p-2" 
-        value ={"https://user.fada.xyz/the_cozy_den_3"}
+        value ={"http://user.fada.xyz/the_cozy_den_3"}
         disabled ={true}
         onChange={(e) => {
             setLinkValue(e.target.value)
@@ -65,7 +65,7 @@ import axios from "axios";
             Embed
         </button>
         <input className="w-10/12 rounded-xl bg-white p-2" 
-        value ={"https://novdyn.gmetri.com/the_cozy_den_3"}
+        value ={"http://user.fada.xyz/the_cozy_den_3"}
         disabled ={true}/>      
          </div>
         

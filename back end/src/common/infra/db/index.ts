@@ -28,7 +28,6 @@ export const queryRunner = async <T>({
 
     const queryResult = Array.isArray(awaitToQuery?.rows) ? awaitToQuery?.rows : awaitToQuery;
 
-    console.log("99999999999999999999999",queryResult)
     if (enableLog === true) {
       logger.debug('query: ' + query);
       logger.debug(JSON.stringify(queryResult));

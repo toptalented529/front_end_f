@@ -10,7 +10,7 @@ const links = ["link 1", "link 2", "link 3"] as const;
 
 const heading = [
   "Project",
-  "information heading",
+  "Experiences",
   "join us! lorem ipsum",
 ] as const;
 
@@ -18,12 +18,12 @@ const text = [
   "Click to start",
   "Nihil et nobis aperiam natus quod quos quisquam quasi earum possimus amet obcaecati excepturi, ratione reprehenderit! Rem, in!",
   "anonymous",
+  "Arabic for Space",
   "Fada",
-  "Scott Milliorn",
 ] as const;
 
-const img = [
-  "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+const experienceUrls = [
+  "https://xr.gmetri.com/al_fahidi",
   "https://images.unsplash.com/photo-1581276879432-15e50529f34b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
   "https://images.unsplash.com/photo-1569748130764-3fed0c102c59?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
 ];
@@ -56,4 +56,4 @@ const items = [
   }
 ]
 
-export { paragraphText, links, heading, text, img, items };
+export { paragraphText, links, heading, text, experienceUrls, items };

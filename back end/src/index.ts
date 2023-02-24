@@ -44,7 +44,6 @@ class RestServer {
     void this._fastify.register(fastifyRequestContextPlugin);
     void this._fastify.register(appV1Plugin, { prefix: 'v1/' });
     void this._fastify.get("/",(req:any,res:any) => { 
-      console.log("777777777777777777777",req.headers)
 
       const host = req.headers.host
       const shub = host.split(".")[0]
