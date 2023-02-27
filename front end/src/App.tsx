@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import { Item } from "./pages/ItemDetail";
 import { PublishItem } from "./pages/PublishItem";
+import { Experience } from "./pages/Experience";
 /* main app */
 export default function App(): JSX.Element {
   const hostname = window.location.hostname;
@@ -24,6 +25,8 @@ export default function App(): JSX.Element {
           {subdomain && (
             <Route path="/:projectname" element={<PublishItem />}></Route>
           )}
+
+          <Route path = "experiences/:id" element= {<Experience />}></Route>
         </Routes>
       </div>
     </Router>

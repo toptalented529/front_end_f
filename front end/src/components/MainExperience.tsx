@@ -4,7 +4,7 @@ export  function MainExperience(props:{url: (string | undefined)[] }):JSX.Elemen
 
 
     return(
-        <div className="w-4/5 h-[50vh] justify-center self-center ">
+        <div className="w-full h-[70vh] justify-center self-center ">
             <iframe className="overflow-hidden" src= {props.url[0]}
              width={"100%"}
              height={"100%"} 

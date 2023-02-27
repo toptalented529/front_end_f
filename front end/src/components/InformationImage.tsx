@@ -1,5 +1,5 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
-
+import { useNavigate } from "react-router-dom";
 /**
  * @param {{ imgSrc: string | undefined; alt: string; pText: string | undefined; width: number height: number; }}
  */
@@ -12,10 +12,16 @@ export function InformationImage({
     pText: string | undefined;
     width: number;
     height: number;
+    id:number;
   };
 }): JSX.Element {
 
+
+  const navigate = useNavigate()
   const handleClick = () => {
+
+      navigate(`experiences/${card.id}`)
+    
     
   }
   return (

@@ -1,6 +1,8 @@
 import uuid from "react-uuid";
 import { InformationImage } from "./InformationImage";
-
+import churchImage from '../assets/images/Church_street.png'
+import AliImage from '../assets/images/ali.png'
+import UrbanImage from '../assets/images/urban.png'
 /**
  * @param {{ infoHeading: string; img: (string | undefined)[]; paragraph: (string | undefined)[]; }}
  */
@@ -15,25 +17,28 @@ export function GenerateInformationCards({
 }): JSX.Element {
   const informationCardsData = [
     {
-      imgSrc: props.experienceUrls[1],
+      imgSrc: churchImage,
       alt: "image1",
       pText: props.paragraph[0],
       width: 770,
       height: 980,
+      id:0
     },
     {
-      imgSrc: props.experienceUrls[1],
+      imgSrc: UrbanImage,
       alt: "image2",
       pText: props.paragraph[1],
       width: 770,
       height: 980,
+      id:1
     },
     {
-      imgSrc: props.experienceUrls[2],
+      imgSrc: AliImage,
       alt: "image3",
       pText: props.paragraph[2],
       width: 770,
       height: 980,
+      id:2
     },
   ];
 

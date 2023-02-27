@@ -25,7 +25,6 @@ export const Dropzone: React.FC<props> = (props) => {
     formData.append('file',acceptedFiles[0])
     
     try {
-      console.log("ddddddddddddddddddddddddddddddddddddddd")
       const response = await axios.post('http://127.0.0.1:8000/v1/upload/image',formData, {
         headers: {
           'Content-Type':'multipart/form-data',

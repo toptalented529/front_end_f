@@ -24,11 +24,21 @@ const text = [
 
 const experienceUrls = [
   "https://xr.gmetri.com/al_fahidi",
-  "https://images.unsplash.com/photo-1581276879432-15e50529f34b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-  "https://images.unsplash.com/photo-1569748130764-3fed0c102c59?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+  "https://xr.gmetri.com/urbanitarian",
+  "https://luru.gmetri.com/luru",
 ];
 
+/////////////////////this is general experience urls/////////////////////////
 
+
+const experiences = [
+  "https://luru.gmetri.com/luru",
+  "https://xr.gmetri.com/urbanitarian",
+  "https://xr.gmetri.com/al_fahidi"
+]
+
+
+//////////////////////////this is for edit experience URLs///////////////////
 const items = [
   {
     imageId: [
@@ -56,4 +66,4 @@ const items = [
   }
 ]
 
-export { paragraphText, links, heading, text, experienceUrls, items };
+export { paragraphText, links, heading, text, experienceUrls,experiences, items };
