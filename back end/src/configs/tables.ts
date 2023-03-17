@@ -1,5 +1,5 @@
 export const tables = {
-  user: 'user',
+  user: 'users',
   project:'project',
   userRefreshToken: 'user_refresh_token',
   publishProject: 'publish_project'

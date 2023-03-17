@@ -99,7 +99,7 @@ export class UploadController implements IBaseController {
     };
   
     try {
-      console.log("12121212121212",sesInstance)
+      console.log("12121212121212",params)
       const result = await sesInstance.sendEmail(params).promise();
       res.send(result);
     } catch (err) {

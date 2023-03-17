@@ -23,12 +23,16 @@ export class AuthService {
     private readonly _userRefreshTokensService: UserRefreshTokensService,
   ) {}
 
-  public createUser = async ({ idType, password }: ISignUpDto): Promise<IJwtTokensDto> => {
+  public createUser = async ({ username,email, password,verificationCode }: ISignUpDto): Promise<IJwtTokensDto> => {
     const newPassword = await this._hashService.getHash(password);
+
     const user = await this._usersService.createOne({
-      idType,
+      username,
+      email,
       password: newPassword,
+      verificationCode,
     });
+    console.log("111111111",user)
     const refreshToken = await this._userRefreshTokensService.generateAndCreateOne(user.id);
     return this._generateTokens(user, refreshToken);
   };

@@ -3,6 +3,7 @@ exports.up = (pgm) => {
     CREATE TABLE IF NOT EXISTS "user_refresh_token" (
     "id" UUID PRIMARY KEY,
     "ppid" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP);
     `);

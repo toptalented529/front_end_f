@@ -5,11 +5,13 @@ import { ISuccess } from '../../common/interfaces/responce-interface';
 import { IBaseController } from '../../common/interfaces/base-controller-interface';
 import { UserContextService } from '../../common/infra/auth/user-context-service';
 import { ILoggerService } from '../../common/interfaces/logger-service-interface';
-
 import { UserRefreshTokensService } from '../users-refresh-tokens/user-refresh-tokens-service';
 import { IJwtTokensDto, IQueryParamsLogout, ISignInDto, ISignUpBodyDto, ISignUpDto } from './auth-interfaces';
 import { AuthService } from './auth-service';
 import { authSchemas } from './auth-schemas';
+import { transporter } from '../../configs/nodemailer';
+import randomstring from 'randomstring'
+
 
 export class AuthController implements IBaseController {
   public routerPrefix = '/auth';
@@ -22,9 +24,10 @@ export class AuthController implements IBaseController {
   ) {}
 
   public initRouter(app: FastifyInstance, opts: FastifyPluginOptions): void {
+
+
     app.post('/signup', {
       handler: this._signup,
-      schema: authSchemas.signup,
     });
     app.post('/signin', {
       handler: this._signin,
@@ -42,17 +45,41 @@ export class AuthController implements IBaseController {
     });
   }
 
-  private _signup = ({ body }: FastifyRequest<{ Body: ISignUpBodyDto }>): Promise<IJwtTokensDto> => {
-    this._logger.debug('_signup start!');
-    this._logger.debug(body);
-    return this._authService.createUser(
+  private _signup =async (req:any,res:any)  => {
+    const {username,email,password} = req.body
+    const verificationCode = randomstring.generate(6);
+    console.log(username,email,password,verificationCode)
+    const JWT:IJwtTokensDto = await this._authService.createUser(
       convertToObjectOrEmptyObject<ISignUpDto>({
-        idType: body.id,
-        password: body.password,
+        username: username,
+        email:email,
+        password: password,
+        verificationCode:verificationCode,
       }),
     );
+      await this._sendVerificatinCode(email,verificationCode);
+      console.log("2222222222222222",JWT)
+    res.status(200).send({jwt:JWT,success:true})
+
   };
 
+  
+  private _sendVerificatinCode = async (recipient:string, code:string) => {
+    const mailOptions = {
+      from: 'work.katashi@gmail.com',
+      to: recipient,
+      subject: 'Verification Code',
+      text: `Your verification code is ${code}.`
+    };
+  
+    try {
+      await transporter.sendMail(mailOptions);
+      console.log(`Verification code email sent to ${recipient}`);
+    } catch (err) {
+      console.error(`Error sending verification code email to ${recipient}:`, err);
+    }
+
+  } 
   private _signin = ({ body }: FastifyRequest<{ Body: ISignInDto }>): Promise<IJwtTokensDto> => {
     this._logger.debug('_signin start!');
     return this._authService.singInUser(convertToObjectOrEmptyObject(body));

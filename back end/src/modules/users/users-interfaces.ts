@@ -1,11 +1,17 @@
 export interface IUsersDto {
   id: string;
-  idType: string;
+  username: string;
+  email: string;
   password: string;
+  isVerified?:boolean;
+  verificationCode?:string;
 }
 
 export interface IUsersPersistence {
   id: string;
-  id_type: string;
+  username: string;
+  email: string;
   password: string;
+  isVerified?:boolean;
+  verificationCode?:string;
 }

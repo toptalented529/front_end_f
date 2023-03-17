@@ -8,11 +8,13 @@ import { ISignUpDto } from '../auth/auth-interfaces';
 export class UsersService {
   public constructor(private readonly _usersRepository: UsersRepository) {}
 
-  public createOne = ({ idType, password }: ISignUpDto): Promise<IUsersDto> => {
+  public createOne = ({ username,email, password,verificationCode }: ISignUpDto): Promise<IUsersDto> => {
     return this._usersRepository.createOne({
       id: randomUUID(),
-      idType,
+      username,
+      email,
       password,
+      verificationCode
     });
   };
 

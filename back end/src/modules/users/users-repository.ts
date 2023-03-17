@@ -34,14 +34,14 @@ export class UsersRepository {
     }).then(lookup);
   };
 
-  public createOne = ({ id, idType, password }: IUsersDto): Promise<IUsersDto> => {
+  public createOne = ({ id, username,email, password,verificationCode }: IUsersDto): Promise<IUsersDto> => {
     return queryRunner({
       query: `
-                    INSERT INTO "${tables.user}" (id, id_type, password)
-                    VALUES ($1, $2, $3)
-                    RETURNING id, id_type;
+                    INSERT INTO "${tables.user}" (id, username,email, password, verificationcode)
+                    VALUES ($1, $2, $3, $4, $5)
+                    RETURNING id,email,username;
                     `,
-      bindings: [id, idType, password],
+      bindings: [id, username,email, password,verificationCode],
       resultMapper: UsersMapper.toDto,
       errorMapper: UsersRepository.mapSaveDbError,
       enableLog: true,

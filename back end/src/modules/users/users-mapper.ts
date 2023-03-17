@@ -4,16 +4,20 @@ export class UsersMapper {
   public static toDto(db: IUsersPersistence): IUsersDto {
     return {
       id: db.id,
-      idType: db.id_type,
+      username: db.username,
+      email: db.email,
       password: db.password,
+      verificationCode:db.verificationCode,
     };
   }
 
   public static toPersistence(dto: IUsersDto): IUsersPersistence {
     return {
       id: dto.id,
-      id_type: dto.idType,
+      username: dto.username,
+      email: dto.username,
       password: dto.password,
+      verificationCode:dto.verificationCode,
     };
   }
 }
