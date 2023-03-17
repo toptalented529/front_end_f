@@ -8,14 +8,14 @@ import { UsersMapper } from './users-mapper';
 import { IUsersDto } from './users-interfaces';
 
 export class UsersRepository {
-  public getByIdType = (idType: string): Promise<IUsersDto | null> => {
+  public getByVerificationcode = (verificationcode: string): Promise<IUsersDto | null> => {
     return queryRunner({
       query: `
-                    SELECT id, id_type, password
+                    SELECT id, verificationcode
                     FROM "${tables.user}"
-                    WHERE id_type = $1
+                    WHERE verificationcode = $1
                     `,
-      bindings: [idType],
+      bindings: [verificationcode],
       resultMapper: UsersMapper.toDto,
       enableLog: true,
     }).then(lookup);
@@ -27,6 +27,20 @@ export class UsersRepository {
                     SELECT id, id_type
                     FROM "${tables.user}"
                     WHERE id = $1
+                    `,
+      bindings: [id],
+      resultMapper: UsersMapper.toDto,
+      enableLog: true,
+    }).then(lookup);
+  };
+
+  public setVerifiedEmailForUser = (id:string ): Promise<IUsersDto> => {
+    return queryRunner({
+      query: `
+            UPDATE "${tables.user}"
+            SET verificationcode = true
+            WHERE id = $1
+            RETURNING id, verificationcode
                     `,
       bindings: [id],
       resultMapper: UsersMapper.toDto,

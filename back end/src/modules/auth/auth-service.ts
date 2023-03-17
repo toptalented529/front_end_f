@@ -32,19 +32,28 @@ export class AuthService {
       password: newPassword,
       verificationCode,
     });
-    console.log("111111111",user)
     const refreshToken = await this._userRefreshTokensService.generateAndCreateOne(user.id);
     return this._generateTokens(user, refreshToken);
   };
 
   public singInUser = async ({ id, password }: ISignInDto) => {
-    const user = await this._usersService.getByIdType(id);
+    const user = await this._usersService.getById(id);
     if (!user) throw new BadRequestException('Incorrect credentials');
     const isPasswordValid = await this._hashService.compareHash(password, user.password);
     if (!isPasswordValid) throw new BadRequestException('Incorrect credentials');
     const refreshToken = await this._userRefreshTokensService.generateAndCreateOne(user.id);
     return this._generateTokens(user, refreshToken);
   };
+
+  public emailVerify= async (code:string) => {
+    const user = await this._usersService.getByVerificationCode(code);
+    if(user){
+      const res = await this._usersService.setVerifiedEmailForUser(user.id)
+      
+    }
+    return user;
+  }
+
 
   public refreshTokens = async (userDto: Omit<IJwtRefreshTokenPayloadDto, 'ppid'>): Promise<{ token: string }> => {
     const refreshToken = await this._userRefreshTokensService.getById(userDto.refreshTokenId);

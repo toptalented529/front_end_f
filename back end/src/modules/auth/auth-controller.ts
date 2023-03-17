@@ -29,6 +29,11 @@ export class AuthController implements IBaseController {
     app.post('/signup', {
       handler: this._signup,
     });
+    app.post('/verify-email', {
+      handler: this._verifyEmail,
+      preValidation: [app.verifyJwtRefreshToken],
+
+    });
     app.post('/signin', {
       handler: this._signin,
       schema: authSchemas.signin,
@@ -69,7 +74,9 @@ export class AuthController implements IBaseController {
       from: 'work.katashi@gmail.com',
       to: recipient,
       subject: 'Verification Code',
-      text: `Your verification code is ${code}.`
+      text: `Your verification code is ${code}.`,
+      html: `<p>Hello,</p><p>Your verification code is <strong>${code}</strong>.</p><p>Please click on the following link to verify your email:</p><p><a href="http://localhost:3000/verify-email?token=${code}">Verify Email</a></p>`,
+
     };
   
     try {
@@ -80,6 +87,18 @@ export class AuthController implements IBaseController {
     }
 
   } 
+
+  private _verifyEmail = async (req:any,res:any) => {
+    const {token} = req.body;
+    const user = this._authService.emailVerify(token)
+    if(user){
+      res.status(200).send({success:true,user:user})
+    }else{
+      res.status(400)
+    }
+
+
+  }
   private _signin = ({ body }: FastifyRequest<{ Body: ISignInDto }>): Promise<IJwtTokensDto> => {
     this._logger.debug('_signin start!');
     return this._authService.singInUser(convertToObjectOrEmptyObject(body));

@@ -18,9 +18,13 @@ export class UsersService {
     });
   };
 
-  public getByIdType = (id: string): Promise<IUsersDto | null> => {
-    return this._usersRepository.getByIdType(id);
+  public getByVerificationCode = (code: string): Promise<IUsersDto | null> => {
+    return this._usersRepository.getByVerificationcode(code);
   };
+
+  public setVerifiedEmailForUser = (id:string): Promise<IUsersDto | null> => {
+    return this._usersRepository.setVerifiedEmailForUser(id);
+  }
 
   public getById = (id: string): Promise<IUsersDto> => {
     return this._usersRepository.getById(id);
