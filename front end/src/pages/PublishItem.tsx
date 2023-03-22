@@ -36,7 +36,7 @@ export const  PublishItem:React.FC = () => {
                 setIframe_url(item)
                 setLoading(false)
                }catch(error){
-                   console.log(error,"what is this?")
+                   console.log(error)
                }
         }
         fetchData()

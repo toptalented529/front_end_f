@@ -7,10 +7,19 @@ exports.up = (pgm) => {
     "email" TEXT NOT NULL,  
     "password" TEXT,  
     "verificationcode" TEXT,  
+    "space" TEXT,  
+    "business" TEXT,  
+    "email_bus" TEXT,  
+    "phone" TEXT,  
+    "address" TEXT,  
+    "language" TEXT,  
+    "timezone" TEXT,  
+    "payment" TEXT,  
     "is_verified" BOOLEAN,  
+    "onboarding_finished" BOOLEAN,  
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-     UNIQUE("username"));
+     UNIQUE("email"));
     `);
 };
 

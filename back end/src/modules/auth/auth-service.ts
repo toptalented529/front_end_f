@@ -23,33 +23,61 @@ export class AuthService {
     private readonly _userRefreshTokensService: UserRefreshTokensService,
   ) {}
 
-  public createUser = async ({ username,email, password,verificationCode }: ISignUpDto): Promise<IJwtTokensDto> => {
-    const newPassword = await this._hashService.getHash(password);
+//////////////if user doesn't exist create DB and send verification link and if the user exist but not verified  , only send verification code./////////////
 
-    const user = await this._usersService.createOne({
-      username,
-      email,
-      password: newPassword,
-      verificationCode,
-    });
-    const refreshToken = await this._userRefreshTokensService.generateAndCreateOne(user.id);
-    return this._generateTokens(user, refreshToken);
+  public createUser = async ({ username,email, password,verificationcode,is_verified }: ISignUpDto): Promise<IJwtTokensDto | null> => {
+    const newPassword = await this._hashService.getHash(password);
+    const existingUser = await this._usersService.getByEmail(email);
+    console.log("22222222222222222",existingUser)
+    if(!existingUser){
+      const user = await this._usersService.createOne({
+        username,
+        email,
+        password: newPassword,
+        verificationcode,
+        is_verified,
+      });
+      const refreshToken = await this._userRefreshTokensService.generateAndCreateOne(user.id);
+      return this._generateTokens(user, refreshToken);
+      
+    }else if(!existingUser.is_verified){
+      const refreshToken = await this._userRefreshTokensService.generateAndCreateOne(existingUser.id);
+      return this._generateTokens(existingUser, refreshToken);    
+    }
+
+
+    // const refreshToken = await this._userRefreshTokensService.generateAndCreateOne(existingUser.id);
+    // return this._generateTokens(existingUser, refreshToken);
+      return null
   };
 
-  public singInUser = async ({ id, password }: ISignInDto) => {
-    const user = await this._usersService.getById(id);
+  public getById = async (email:string) => {
+    return this._usersService.getByEmail(email)
+  }
+
+  public singInUser = async ({ email, password }: ISignInDto) => {
+    const user = await this._usersService.getByEmail(email);
+
     if (!user) throw new BadRequestException('Incorrect credentials');
     const isPasswordValid = await this._hashService.compareHash(password, user.password);
     if (!isPasswordValid) throw new BadRequestException('Incorrect credentials');
+    if(!user.is_verified) throw new BadRequestException("Incorrect credentials Password")
+    const refreshToken = await this._userRefreshTokensService.generateAndCreateOne(user.id);
+    return this._generateTokens(user, refreshToken);
+  };
+  public singInGoogle = async ( email:string ) => {
+    const user = await this._usersService.getByEmail(email);
+    if (!user) throw new BadRequestException('Incorrect credentials');
+   
     const refreshToken = await this._userRefreshTokensService.generateAndCreateOne(user.id);
     return this._generateTokens(user, refreshToken);
   };
 
-  public emailVerify= async (code:string) => {
+  public emailVerify= async (code:any) => {
     const user = await this._usersService.getByVerificationCode(code);
     if(user){
       const res = await this._usersService.setVerifiedEmailForUser(user.id)
-      
+
     }
     return user;
   }
@@ -85,7 +113,7 @@ export class AuthService {
       ppid,
     };
     return jwt.sign(payload, jwtConfig.refreshTokenSecret, {
-      expiresIn: 60 * 60,
+      expiresIn: 60 * 600,
     });
   }
 }

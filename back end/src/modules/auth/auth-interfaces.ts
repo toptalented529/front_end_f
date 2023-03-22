@@ -2,7 +2,8 @@ export interface ISignUpDto {
   readonly email: string;
   readonly username:string;
   readonly password: string;
-  readonly verificationCode: string;
+  readonly verificationcode: string;
+  readonly is_verified?: boolean;
 }
 
 export interface ISignUpBodyDto {
@@ -11,12 +12,12 @@ export interface ISignUpBodyDto {
   readonly email: string;
   readonly username:string;
   readonly password: string;
-  readonly verificationCode: string;
+  readonly verificationcode: string;
 
 }
 
 export interface ISignInDto {
-  readonly id: string;
+  readonly email: string;
   readonly password: string;
 }
 

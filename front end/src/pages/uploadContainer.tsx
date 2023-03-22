@@ -1,5 +1,5 @@
 
-import { Dropzone } from "./FileUploads/Dropzone";
+import { Dropzone } from "../components/FileUploads/Dropzone";
 
 interface props {
     imageNumber: string[],

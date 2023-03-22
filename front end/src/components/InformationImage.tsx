@@ -12,18 +12,13 @@ export function InformationImage({
     pText: string | undefined;
     width: number;
     height: number;
-    id:number;
+    id: number;
   };
 }): JSX.Element {
-
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleClick = () => {
-
-      navigate(`experiences/${card.id}`)
-    
-    
-  }
+    navigate(`experiences/${card.id}`);
+  };
   return (
     <div className="border-4 border-blue-900 rounded-xl w-5/6 hover:cursor-pointer ">
       <LazyLoadImage

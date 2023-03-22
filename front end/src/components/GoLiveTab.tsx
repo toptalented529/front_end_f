@@ -12,7 +12,7 @@ import axios from "axios";
         projectName: "user.fada.xyz/the_cozy_den_3",
         publishURL: window.localStorage.getItem("projectURL")
       })
-      console.log("00000000000000000000000000",hostname+ pathname,response)
+      console.log(hostname+ pathname,response)
       if(response.data.res !== undefined && response.data.res !== null){
       window.alert("successfully published")
       }else{

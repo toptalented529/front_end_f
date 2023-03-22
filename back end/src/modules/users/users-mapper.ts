@@ -7,7 +7,16 @@ export class UsersMapper {
       username: db.username,
       email: db.email,
       password: db.password,
-      verificationCode:db.verificationCode,
+      verificationcode:db.verificationcode,
+      is_verified:db.is_verified,
+      space:db.space,
+      business:db.business,
+      email_bus:db.email_bus,
+      phone:db.phone,
+      address:db.address,
+      language:db.language,
+      timezone:db.timezone,
+      payment:db.payment
     };
   }
 
@@ -17,7 +26,16 @@ export class UsersMapper {
       username: dto.username,
       email: dto.username,
       password: dto.password,
-      verificationCode:dto.verificationCode,
+      verificationcode:dto.verificationcode,
+      is_verified:dto.is_verified,
+      space:dto.space,
+      business:dto.business,
+      email_bus:dto.email_bus,
+      phone:dto.phone,
+      address:dto.address,
+      language:dto.language,
+      timezone:dto.timezone,
+      payment:dto.payment,
     };
   }
 }

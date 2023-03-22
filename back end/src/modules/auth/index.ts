@@ -11,6 +11,6 @@ import { UsersService } from '../users/users-service';
 injected(UsersService, TOKENS.userRepository);
 injected(AuthService, TOKENS.userService, TOKENS.hashService, TOKENS.userRefreshTokenService);
 injected(UserRefreshTokensService, TOKENS.userRefreshTokenRepository, TOKENS.hashService);
-injected(AuthController, TOKENS.autService, TOKENS.userRefreshTokenService, TOKENS.userContextService, TOKENS.loggerService);
+injected(AuthController, TOKENS.autService, TOKENS.userRefreshTokenService,TOKENS.userContextService, TOKENS.loggerService,TOKENS.userService);
 
 export const authModule = container.get(TOKENS.authController);

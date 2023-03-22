@@ -1,7 +1,7 @@
 import { Contact } from "../components/Contact";
 import { Footer } from "../components/Footer";
 import { Hero } from "../components/Hero";
-import { NavBar } from "../components/NavBar";
+import { NavBar } from "../components/NavBar/NavBar";
 // import { links } from "../data";
 import { Information } from "../components/Information";
 // import { Quote } from "../components/Quote";

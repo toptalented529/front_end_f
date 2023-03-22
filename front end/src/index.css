@@ -8,3 +8,40 @@ body {
     sans-serif;
     height: 100vh;
 }
+
+@keyframes move-right {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+.text-gradient {
+  background: linear-gradient(to right, white 50%, transparent 50%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-animate {
+  animation: textGradient 1s ease-in-out forwards;
+}
+
+@keyframes textGradient {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

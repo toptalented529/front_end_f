@@ -14,6 +14,9 @@ const heading = [
   "join us! lorem ipsum",
 ] as const;
 
+const words = ["Online Store" , "Product Showcase" , "Event", "Meeting Room", "Art Gallery", "Portfolio" , "Team Space", "Other"]
+const timezone = ['GMT+1','GMT+2','GMT+3','GMT+4','GMT+5','GMT+6','GMT-1','GMT-2','GMT-3','GMT-4','GMT-5','GMT-6']
+const paymentMethod = ["MasterCard"]
 const text = [
   "Click to start",
   "Nihil et nobis aperiam natus quod quos quisquam quasi earum possimus amet obcaecati excepturi, ratione reprehenderit! Rem, in!",
@@ -39,6 +42,33 @@ const experiences = [
 
 
 //////////////////////////this is for edit experience URLs///////////////////
+const freetemplateItems = [
+  {
+    imageurl:'',
+    hash:'x01kkslas898uaskdjlaksdj',
+    invite_link:'https://prpfwx.fada.xyz/the_cozy_den',
+    host_link:'https://prpfwx.fada.xyz/the_cozy_den',
+    host_passcode:''
+
+  },
+  {
+    imageurl:'',
+    hash:'x01kkslas898uaskdjlaksdj',
+    invite_link:'https://prpfwx.fada.xyz/the_cozy_den',
+    host_link:'https://prpfwx.fada.xyz/the_cozy_den',
+    host_passcode:''
+
+  },
+  {
+    imageurl:'',
+    hash:'x01kkslas898uaskdjlaksdj',
+    invite_link:'https://prpfwx.fada.xyz/the_cozy_den',
+    host_link:'https://prpfwx.fada.xyz/the_cozy_den',
+    host_passcode:''
+
+  },
+]
+
 const items = [
   {
     imageId: [
@@ -66,4 +96,4 @@ const items = [
   }
 ]
 
-export { paragraphText, links, heading, text, experienceUrls,experiences, items };
+export { paragraphText, links, heading, text, experienceUrls,experiences, items,words,timezone,paymentMethod,freetemplateItems };

@@ -20,7 +20,7 @@ export class UsersController implements IBaseController {
   public initRouter(app: FastifyInstance, opts: FastifyPluginOptions): void {
     app.get('/info', {
       handler: this._info,
-      schema: usersSchema.info,
+      // schema: usersSchema.info,
       preValidation: [app.verifyJwtAccessToken],
     });
 
@@ -31,7 +31,7 @@ export class UsersController implements IBaseController {
     });
   }
 
-  private _info = (): Promise<IUsersDto> => {
+  private _info = (): Promise<IUsersDto | null> => {
     const userId = this._userContext.get().id;
     this._logger.debug('userId' + userId);
     return this._usersService.getById(userId);

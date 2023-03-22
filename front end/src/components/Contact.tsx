@@ -22,7 +22,6 @@ export const Contact: React.FC<props> = (props: {
   const [emailAddress, setEmailAddress] = useState<string>("");
 
   const handleEmailSend = async () => {
-    console.log("here");
     const response = await axios.post(
       "http://127.0.0.1:8000/v1/upload/send-email",
       {
@@ -37,7 +36,7 @@ export const Contact: React.FC<props> = (props: {
 
     <div className="relative z">
       <img src = {gridImage}
-        className="absolute opacity-10 h-[100%] w-[100%]"
+        className="absolute opacity-10 h-[100%] w-[100%]" alt= "pic"
       ></img>
     <div
       className="flex flex-col top-0 left-0 w-full  min-h-screen mb--64 p-12 bg-cover text-sm text-center   

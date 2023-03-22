@@ -3,8 +3,16 @@ export interface IUsersDto {
   username: string;
   email: string;
   password: string;
-  isVerified?:boolean;
-  verificationCode?:string;
+  verificationcode?:string;
+  is_verified?:boolean;
+  space?:string;
+  business?:string;
+  email_bus?:string;
+  phone?:string;
+  address?:string;
+  language?:string;
+  timezone?:string;
+  payment?:string;
 }
 
 export interface IUsersPersistence {
@@ -12,6 +20,14 @@ export interface IUsersPersistence {
   username: string;
   email: string;
   password: string;
-  isVerified?:boolean;
-  verificationCode?:string;
+  is_verified?:boolean;
+  verificationcode?:string;
+  space?:string;
+  business?:string;
+  email_bus?:string;
+  phone?:string;
+  address?:string;
+  language?:string;
+  timezone?:string;
+  payment?:string;
 }
