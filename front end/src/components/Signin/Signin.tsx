@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import useFetch from "../../Hooks/useFetch";
 import { useNavigate } from "react-router-dom";
+import { notification } from "antd";
 
 export function SignIn(): JSX.Element {
 
@@ -76,7 +77,12 @@ export function SignIn(): JSX.Element {
 
       const emailAddress = handleEmailFormat(email)
       if(emailAddress ===null){
-        alert("emial format is not correct!")
+        notification.open({
+          message:"SignIn",
+          description:"Email format is not correct!",
+          type:"warning",
+          duration:3,
+        })
         return
       }
       const response = await axios.post("http://127.0.0.1:8000/v1/auth/signin",{
@@ -99,14 +105,26 @@ export function SignIn(): JSX.Element {
        window.location.href = '/dashboard'
        console.log(response.data.token)
       }else{
-       alert("credentials incorrect!")
+
+        notification.open({
+          message:"Credential!",
+          description:"Credentials incorrect!",
+          type:"info",
+          duration:3,
+        })
+      //  alert("credentials incorrect!")
        setCredentialError(true)
       }
 
     } catch(e:any){
       console.log(e.response.status)
       if(e.response.status ===400){
-        alert("incorrect credentials")
+        notification.open({
+          message:"Credential!",
+          description:"Credentials incorrect!",
+          type:"info",
+          duration:3,
+        })
         setCredentialError(true)
 
       }

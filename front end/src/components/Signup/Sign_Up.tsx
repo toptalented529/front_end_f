@@ -8,6 +8,8 @@ import zxcvbn from "zxcvbn";
 import axios from "axios";
 import useFetch from "../../Hooks/useFetch";
 import { useNavigate } from "react-router-dom";
+import { notification } from "antd";
+
 
 
 export function SignUps(): JSX.Element {
@@ -68,19 +70,34 @@ export function SignUps(): JSX.Element {
   const handleSignUp = async () => {
     console.log(isValid, password);
     if (password !== confirmPassword) {
-      alert("confirm password is not correct!");
+      notification.open({
+        message:"password!",
+        description:"Confirm Password is not correct!",
+        type:"info",
+        duration:3,
+      })      
       return
     }
     if (!isValid) {
-      alert(
-        "should imply Upper letter lower letter special letter and at least 8 charactors"
-      );
+      notification.open({
+        message:"password!",
+        description:"should imply Upper letter lower letter special letter and at least 8 charactors",
+        type:"info",
+        duration:3,
+      })  
+   
       return
     }
     try{
       const emailaddress =  handleEmailFormat(email)
       if(emailaddress ===null) {
-        alert("email format is not correct!")
+        notification.open({
+        message:"Credential!",
+        description:"email format is not correct!",
+        type:"info",
+        duration:3,
+      }) 
+      
         return
       }
 
@@ -102,9 +119,19 @@ export function SignUps(): JSX.Element {
 
         localStorage.setItem("JWT",token);
         localStorage.setItem("refreshToken", refreshToken);
-        alert("verification code was sent to email")
+        notification.open({
+          message:"verification code!",
+          description:"verification code was sent to email to your email",
+          type:"success",
+          duration:3,
+        })
       } else {
-        alert("user exists already")
+        notification.open({
+          message:"SignUp",
+          description:"user exists already",
+          type:"info",
+          duration:3,
+        })
       }
     }catch(e:any) {
       console.log(e.response.status)
