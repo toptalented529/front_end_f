@@ -8,7 +8,7 @@ export function NavbarLinks(): JSX.Element {
     { href: "/item",linkText:'Gallery'},
     { href: "/",linkText: 'Plans' },
     { href: "/",linkText: 'Fada Docs'},
-    { href: "/", linkText:'Contact Us'},
+    { href: "#",  linkText:'Contact Us'},
   ];
 
   return (

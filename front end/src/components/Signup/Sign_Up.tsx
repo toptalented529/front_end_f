@@ -33,10 +33,10 @@ export function SignUps(): JSX.Element {
     
     if(checkEmailFormat(email)){
 
-      let [localPart, domain] = email.split('@');
-      let newLocalPart = localPart.replace(/\./g, '');
-      let newEmail = newLocalPart + '@' + domain;
-      return newEmail;
+      // let [localPart, domain] = email.split('@');
+      // let newLocalPart = localPart.replace(/\./g, '');
+      // let newEmail = newLocalPart + '@' + domain;
+      return email;
     }else{
       return null;
     }
@@ -108,17 +108,10 @@ export function SignUps(): JSX.Element {
       });
       console.log(response.data.success);
       if (response.data.success) {
-        let token = response.data.jwt.token
-        if(token?.includes('"')){
-             token = token.split('"')[1]
-        }
-        let refreshToken = response.data.jwt.refreshToken
-        if(refreshToken?.includes('"')){
-          refreshToken = refreshToken.split('"')[1]
-        }
 
-        localStorage.setItem("JWT",token);
-        localStorage.setItem("refreshToken", refreshToken);
+
+        localStorage.setItem("JWT",response.data.jwt.token);
+        localStorage.setItem("refreshToken", response.data.jwt.refreshToken);
         notification.open({
           message:"verification code!",
           description:"verification code was sent to email to your email",

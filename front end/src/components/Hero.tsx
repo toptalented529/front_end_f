@@ -1,7 +1,7 @@
 // import { HeroImage } from "./HeroImage";
 import { useNavigate } from "react-router-dom";
-import fadaLogo from "../assets/images/fada.svg";
-import { NavbarLinks } from "./NavBar/NavbarLinks";
+import fadaLogo from "../assets/images/image.png";
+// import { NavbarLinks } from "./NavBar/NavbarLinks";
 /**
  * @param {{ hText: string; pText: string; bText: string; }} props
  */
@@ -19,7 +19,7 @@ export function Hero(): JSX.Element {
         Arabic For Space
       </p>
       <p className="my-4 leading-normal font-sans text-center text-gray-200 text-2xl sm:mx-auto">
-        Enabling the space Internet
+        Enabling the spatial Internet
       </p>
       <div className="flex flex-row">
         <button
@@ -37,7 +37,7 @@ export function Hero(): JSX.Element {
         </button>
       </div>
       <div className="absolute bottom-0">
-      <NavbarLinks  />
+
       </div>
     </div>
     //  </div>

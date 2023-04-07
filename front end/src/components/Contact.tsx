@@ -4,7 +4,7 @@
  */
 
 import axios from "axios";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import gridImage from "../assets/images/grid1.png"
 interface props {
   h2: string;
@@ -20,6 +20,7 @@ export const Contact: React.FC<props> = (props: {
   console.log(props.p);
 
   const [emailAddress, setEmailAddress] = useState<string>("");
+  const myElementRef = useRef(null)
 
   const handleEmailSend = async () => {
     const response = await axios.post(
@@ -52,7 +53,7 @@ export const Contact: React.FC<props> = (props: {
       </h2>
       {/* <p>{props.p}</p> */}
       <div className="items-center flex flex-col">
-        <div className="relative self-center">
+        <div ref = {myElementRef} className="relative self-center">
           <input
             onChange={(e) => {
               setEmailAddress(e.target.value);
@@ -60,7 +61,7 @@ export const Contact: React.FC<props> = (props: {
             className="w-[30vw] min-w-[150px] rounded-full bg-black text-white border-b-2 border-blue-500 outline-none font-sans text-lg sm:text-sm lg:text-2xl  h-[4vw] min-h-[50px] placeholder-gray-300 text-center"
             placeholder="Your Email here"
           ></input>
-          <div className="absolute top-[80%] w-[80%] left-[10%] h-[1px] bg-white transform scale-x-1 transition-transform"></div>
+          <div id='#contact' className="absolute top-[80%] w-[80%] left-[10%] h-[1px] bg-white transform scale-x-1 transition-transform"></div>
         </div>
         <button
           onClick={handleEmailSend}

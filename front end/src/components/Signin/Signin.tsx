@@ -173,7 +173,7 @@ export function SignIn(): JSX.Element {
       }}
       />{
         credentialError &&
-      <span className="underline-offset-1 text-white">don't you have credential? go to signUp</span>
+      <span className="underline text-white">don't you have credential? go to signUp</span>
       }
       <div className="flex flex-row items-center mb-8">
         <div className="bg-white h-[2px]  w-[125px] sm:w-[175px] mr-3" />
